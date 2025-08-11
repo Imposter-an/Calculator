@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayan's Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <form>
+                <div class="display">
+                    <input type="text" name="display" readonly>
+                </div>
+                <div>
+                    <input type="button" value="AC" class="operator" data-action="clear">
+                    <input type="button" value="DE" class="operator" data-action="delete">
+                    <input type="button" value="." class="operator">
+                    <input type="button" value="/" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="7">
+                    <input type="button" value="8">
+                    <input type="button" value="9">
+                    <input type="button" value="*" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value="6">
+                    <input type="button" value="-" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                    <input type="button" value="+" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="00">
+                    <input type="button" value="0">
+                    <input type="button" value="=" class="equal operator" data-action="calculate">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let display = document.querySelector("input[name='display']");
+        let buttons = document.querySelectorAll("input[type='button']");
+        let operators = ["+", "-", "*", "/"];
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                let value = button.value;
+                let action = button.dataset.action;
+
+                if (action === "clear") {
+                    display.value = "";
+                }
+                else if (action === "delete") {
+                    display.value = display.value.slice(0, -1);
+                }
+                else if (action === "calculate") {
+                    if (display.value.trim() === "") {
+                        display.value = "Error";
+                        return;
+                    }
+                    try {
+                        // Prevent divide by zero
+                        if (/\/0(?!\.\d)/.test(display.value)) {
+                            display.value = "Cannot divide by zero";
+                            return;
+                        }
+                        let result = eval(display.value);
+                        if (isNaN(result) || !isFinite(result)) {
+                            display.value = "Error";
+                        } else {
+                            display.value = result;
+                        }
+                    } catch {
+                        display.value = "Error";
+                    }
+                }
+                else {
+                    let lastChar = display.value.slice(-1);
+
+                    // Prevent starting with invalid operators
+                    if (display.value === "" && operators.includes(value) && value !== "-") {
+                        return;
+                    }
+
+                    // Prevent multiple operators in a row
+                    if (operators.includes(value) && operators.includes(lastChar)) {
+                        return;
+                    }
+
+                    // Prevent multiple dots in the same number
+                    if (value === ".") {
+                        let parts = display.value.split(/[\+\-\*\/]/);
+                        let lastPart = parts[parts.length - 1];
+                        if (lastPart.includes(".")) {
+                            return;
+                        }
+                    }
+
+                    display.value += value;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

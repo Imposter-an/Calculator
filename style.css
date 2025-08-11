@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, rgb(200, 180, 255), rgb(102, 25, 150));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    background: rgb(102, 25, 150);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.calculator form input {
+    border: 0;
+    outline: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    background: transparent;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin: 3px;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Display box style - no hover */
+form .display {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+form .display input {
+    text-align: right;
+    flex: 1;
+    font-size: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Hover only on buttons */
+.calculator form input[type="button"]:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* '=' button */
+form input.equal {
+    width: 130px;
+}
+
+form input[type="button"]:hover {
+    background: rgba(0, 255, 255, 0.2);
+    color: aquamarine;
+    box-shadow: 0 0 10px aqua, 0 0 15px aqua;
+    transform: scale(1.00);
+}
+
+form input[type="button"]:focus,
+form input[type="button"]:active {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Operator buttons */
+form input.operator {
+    color: aqua;
+}
