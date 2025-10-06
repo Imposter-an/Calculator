@@ -2,7 +2,7 @@
 
 A sleek, responsive calculator built using HTML, CSS, and JavaScript.
 
-```🔗 Live Demo: https://intellicalc.netlify.app/```
+🔗 Live Demo: https://intellicalc.netlify.app/
 
 **📌 Features**
 
