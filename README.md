@@ -26,12 +26,12 @@ JavaScript: For implementing the calculator's functionality.
 
 Clone the repository:
 
-'git clone https://github.com/yourusername/IntelliCalc.git'
+'''git clone https://github.com/yourusername/IntelliCalc.git'''
 
 
 Navigate into the project directory:
 
-'cd IntelliCalc'
+'''cd IntelliCalc'''
 
 
 Open index.html in your preferred browser to start using the calculator.
